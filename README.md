@@ -3,8 +3,8 @@ I implemented a Data Visualization project using three datasets (landscaping.csv
 Goal 1: Understand which job types contribute to higher customer satisfaction.
 Goal 2: Explore the number of days employees worked to enhance productivity and customer satisfaction.
 
-The four visualizations are as follows:
-
+**The four visualizations are as follows:
+**
 Explanatory Visualization:
 
 Explores job types that yield high and low customer satisfaction.
