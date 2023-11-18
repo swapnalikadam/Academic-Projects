@@ -1,3 +1,5 @@
+# Data Visualizations to identify opportunities for improving the landscaping company.
+
 I implemented a Data Visualization project using three datasets (landscaping.csv, employees.csv, and calendar.csv) to identify opportunities for improving our landscaping company. Before starting visualizations, I set two sub-goals:
 
 Goal 1: Understand which job types contribute to higher customer satisfaction.
