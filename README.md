@@ -1,12 +1,13 @@
 # Natures Palette
-Nature’s Palette: An open-access digital repository of spectral data
+I integrated the Georeferencing feature into the existing Nature's Palette website, originally developed by a PHD student who conducted research in the same domain. This new functionality enables users, particularly researchers, to access Google Maps directly on the website. It serves as a valuable tool for streamlining studies on various bird species worldwide. The website displays latitude and longitude coordinates of bird species locations as markers on Google Maps.
+
+Users can enhance their search experience by entering specific terms in designated boxes and clicking the "Search with Georeferencing" button. This action displays all relevant markers on the map. For more focused research, researchers can draw polygons on the map, concentrating on specific areas of interest. Markers outside the drawn polygons are then disabled. The tool offers advanced features such as drawing complex polygons, zooming in or out on the Google Map, and creating multiple color-filled polygons to distinguish different areas on the map. These additions significantly enhance the user experience, providing researchers with powerful tools for detailed exploration and analysis within Nature's Palette.
 
 ## Introduction
-Nature’s Palette is a digital repository of spectral data.
 This is a prototype of the online repository requested by Dr. Pierre-Paul Bitton.
-Githlab URL, https://
+URL- https://research.library.mun.ca/14708/1/thesis.pdf
 
-#### Required Software
+#### Required Software Setup to Run the Project
 - Node.js, version- 12.x
 - MongoDB, version 4.x
 - Install R language, version >3.5.
