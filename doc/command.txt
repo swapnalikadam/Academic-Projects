@@ -1,0 +1,21 @@
+MongoDB START COMMAND:
+	sudo systemctl start mongod
+
+Git clone:
+	git clone -b branch_name https://gitlab.com/nature-s-palette/nature-palette---prototype-version.git project_name
+
+	Example: git clone -b development-active https://gitlab.com/nature-s-palette/nature-palette---prototype-version.git NP_app
+
+
+
+NODEJS COMMAND:
+	
+	Find the proccess ID: 
+		lsof -i tcp:8080
+	Kill proccess:	
+		kill -9 6231
+	Build app:
+		npm install
+	Run app: 
+		node server.js
+

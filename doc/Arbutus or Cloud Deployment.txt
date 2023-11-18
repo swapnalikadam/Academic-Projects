@@ -1,0 +1,91 @@
+
+################################# VM SETUP on Arbutus cloud: ##############################################
+
+   1. (Recomanded) instance setup: https://docs.computecanada.ca/wiki/Cloud_Quick_Start
+      1. Connecting your VM  with SSH
+                  $ ssh -i /path/where/your/private/key/is/my_key.pem ubuntu@206.12.95.172
+         Example: $ ssh -i ~/.ssh/Rabeya_Akhter.pem ubuntu@206.12.95.172
+      2. IF WARNING: UNPROTECTED PRIVATE KEY FILE! 
+         chmod 400 /path/where/your/private/key/is/my_key.pem
+
+   Useful Links:
+      1.instance setup and volume partition: https://docs.google.com/presentation/d/e/2PACX-1vSnWDs8Fs3g6mjY6nWHiPcgHZZiakINM8dG4MQjUqOOKcUfBvSqiNw1pcUfyZHlC-4NKelDWxt_3JAV/pub?start=false&loop=false&delayms=60000&slide=id.p3
+
+      2.Openstack boot form volume: https://docs.computecanada.ca/wiki/OpenStack#Formatting_and_Mounting_an_Empty_Volume
+
+
+###############################Deployment steps on Cloud(Arbutus, Google, AWS)###############################
+IaaS:
+   1. After creating VM instance with Linux ubuntu 18.04 (bionic)
+
+   2. Install Git: 
+      1. sudo apt install git
+
+   3. Firewall Setup (Must follow the sequence):
+      1. sudo ufw allow http
+      2. sudo ufw allow https
+      3. sudo ufw allow ssh
+      4. sudo ufw enable
+
+   4. Install R and related package: 
+      1. sudo apt-get update
+      2. sudo apt-get install libmagick++-dev
+      3. sudo apt-get install -y libxml2-dev libcurl4-openssl-dev libssl-dev
+      4. https://www.digitalocean.com/community/tutorials/how-to-install-r-on-ubuntu-18-04-quickstart
+      5. sudo -i R
+      6. install.packages("pavo")
+      7. install.packages("rjson")
+      8. install.packages("lightr")
+
+
+   5. Install MongoDB:
+      1. curl -fsSL https://www.mongodb.org/static/pgp/server-4.4.asc | sudo apt-key add -
+      2. echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu bionic/mongodb-org/4.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.4.list
+      3. sudo apt update
+      4. sudo apt install mongodb-org
+      5. sudo systemctl start mongod.service
+      6. sudo systemctl status mongod
+      7. sudo systemctl enable mongod
+
+   6. Install Node:
+      1. sudo apt-get update
+      2. sudo apt update
+      3. sudo apt purge nodejs
+      4. apt purge npm
+      5. sudo curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash - 
+      6. sudo apt-get install -y nodejs
+      7. node --version
+
+
+   7. Install Pm2:
+      1. sudo npm install -g pm2
+      2. pm2 startup systemd
+
+   8. Install NGINX:
+      1. sudo apt update
+      2. sudo apt install nginx
+      3. sudo ufw allow 'Nginx HTTP'
+      4. sudo ufw status
+      5. sudo systemctl restart nginx
+      6. sudo systemctl enable nginx
+      7. sudo nano /etc/nginx/sites-available/default
+         . . . .
+      location / {
+         proxy_pass http://localhost:8080;
+         proxy_http_version 1.1;
+         proxy_set_header Upgrade $http_upgrade;
+         proxy_set_header Connection 'upgrade';
+         proxy_set_header Host $host;
+         proxy_cache_bypass $http_upgrade;
+      }
+   }
+      8. sudo nginx -t
+      9. sudo systemctl restart nginx
+
+
+   9. Install App:
+      1. mkdir app
+      2. git clone -b development-feature-georeferencing https://gitlab.com/nature-s-palette/nature-palette---prototype-version.git app 
+      3. cd app/src 
+      4. npm install
+      5. pm2 start server.js
